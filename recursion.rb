@@ -93,7 +93,53 @@ def bsearch(array, target)
   end   
 end
 
-def make_change(amt, *denoms)
-end
+def make_change(amt, denoms=[25, 10, 5, 1])
+  if denoms.include?(amt)
+    [amt]
+  else
+    arr = denoms.select {|d| d <= amt}.map do |denom|
+      make_change(amt - denom, denoms) << denom
+    end
     
+    arr.min {|a1, a2| a1.length <=> a2.length}
+  end
+end 
+
+def merge_sort(arr)#, start=0, en=arr.size-1)
+  if arr.size == 0 || arr.size == 1
+    arr
+  else
+    mid = arr.size / 2
+    a1 = merge_sort(arr[0...mid])
+    a2 = merge_sort(arr[mid..-1])
+    
+    res = []
+    while !a1.empty? && !a2.empty?
+      if a1.first > a2.first
+        res << a2.shift
+      else
+        res << a1.shift
+      end
+    end
+    
+    if a1.empty?
+      res += a2
+    else
+      res += a1
+    end
+    
+    res
+  end
+end
+
+def subsets(arr)
+  return [[]] if arr == []
+  last = arr.pop
+  all_but_last = subsets(arr)
+  p all_but_last
+  #all_but_last + all_but_last.map {|e| e + [last]} 
+  all_but_last + all_but_last.map {|e| e.dup<<last} 
+end
+
+
   

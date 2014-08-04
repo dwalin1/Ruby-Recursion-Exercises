@@ -43,10 +43,7 @@ class WordChainer
         @all_seen_words[adjacent_word] = current_word
       end
     end
-    
-    # new_current_words.each do |ncw|
-    #   p "#{ncw}: #{@all_seen_words[ncw]}"
-    # end
+
     new_current_words
   end
   

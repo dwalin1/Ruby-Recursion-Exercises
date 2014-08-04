@@ -105,7 +105,7 @@ def make_change(amt, denoms=[25, 10, 5, 1])
   end
 end 
 
-def merge_sort(arr)#, start=0, en=arr.size-1)
+def merge_sort(arr)
   if arr.size == 0 || arr.size == 1
     arr
   else
@@ -137,7 +137,6 @@ def subsets(arr)
   last = arr.pop
   all_but_last = subsets(arr)
   p all_but_last
-  #all_but_last + all_but_last.map {|e| e + [last]} 
   all_but_last + all_but_last.map {|e| e.dup<<last} 
 end
 
